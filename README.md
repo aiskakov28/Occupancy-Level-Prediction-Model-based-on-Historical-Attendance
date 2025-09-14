@@ -233,7 +233,7 @@ python -m pip install -r services/forecast/requirements.txt pytest requests
 pytest -q tests/unit tests/integration
 ```
 
-**Gateway smoke (optional)**
+**Gateway smoke**
 
 ```sh
 export GATEWAY_URL=http://localhost:8080
@@ -267,7 +267,7 @@ make e2e
 
 ---
 
-## Infrastructure (Optional)
+## Infrastructure 
 
 - **Kubernetes:** manifests in `infra/k8s` (kustomize-ready)
 - **Terraform:** `infra/terraform` provisions VPC, RDS (5432), ECR repositories
