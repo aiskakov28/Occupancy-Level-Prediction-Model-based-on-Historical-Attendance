@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forecast
+  namespace: occupancy
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: forecast } }
+  template:
+    metadata: { labels: { app: forecast } }
+    spec:
+      containers:
+      - name: forecast
+        image: forecast:latest
+        imagePullPolicy: IfNotPresent
+        ports: [{ containerPort: 8000 }]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: forecast
+  namespace: occupancy
+spec:
+  selector: { app: forecast }
+  ports:
+  - port: 8000
+    targetPort: 8000
+    protocol: TCP
+    name: http

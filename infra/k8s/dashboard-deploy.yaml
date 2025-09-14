@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard
+  namespace: occupancy
+spec:
+  replicas: 1
+  selector: { matchLabels: { app: dashboard } }
+  template:
+    metadata: { labels: { app: dashboard } }
+    spec:
+      containers:
+      - name: dashboard
+        image: dashboard:latest
+        imagePullPolicy: IfNotPresent
+        envFrom: [{ configMapRef: { name: dashboard-env } }]
+        ports: [{ containerPort: 3000 }]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard
+  namespace: occupancy
+spec:
+  selector: { app: dashboard }
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+    name: http

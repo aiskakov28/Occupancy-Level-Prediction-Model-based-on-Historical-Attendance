@@ -1,0 +1,22 @@
+name: dbt_occupancy
+version: "1.0.0"
+config-version: 2
+
+profile: dbt_occupancy
+
+models:
+  dbt_occupancy:
+    +materialized: table
+    staging:
+      +schema: staging
+    marts:
+      +schema: marts
+
+seeds:
+  dbt_occupancy:
+    +schema: seeds
+    gym_dataset:
+      column_types:
+        Date: date
+        Time: time
+        "People Detected": integer

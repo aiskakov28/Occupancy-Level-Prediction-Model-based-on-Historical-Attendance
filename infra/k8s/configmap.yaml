@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dashboard-env
+  namespace: occupancy
+data:
+  NEXT_PUBLIC_GATEWAY_URL: "http://gateway.occupancy.svc.cluster.local:8080"
